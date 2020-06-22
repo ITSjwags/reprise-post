@@ -1,8 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
-import { normalize } from 'styled-normalize'
+import reset from 'styled-reset-advanced'
 
 const GlobalStyle = createGlobalStyle`
-  ${normalize}
+  ${reset}
+
+  html, body {
+    background: #cec1a5;
+  }
 `
 
 export default GlobalStyle
