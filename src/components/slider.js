@@ -190,7 +190,6 @@ const SlideDescription = styled.p`
   font-size: 18px;
   font-style: italic;
   letter-spacing: 3px;
-  line-height: 1;
   margin: 0;
   opacity: 0;
   padding: 10px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import styled from 'styled-components'
@@ -15,9 +15,17 @@ const WorkPage = (props) => {
     data: {
       datoCmsWorkPage: { videos, seoMetaTags },
     },
+    pageContext: { editor: editorFromUrl },
   } = props
 
   const [openVideoDetails, setOpenVideoDetails] = useState({})
+
+  const filteredVideos = !!editorFromUrl
+    ? videos.filter(
+        (video) =>
+          video?.editor?.name.toLowerCase() === editorFromUrl.toLowerCase()
+      )
+    : videos
 
   const showModal = () => {
     return Object.keys(openVideoDetails).length !== 0
@@ -39,8 +47,28 @@ const WorkPage = (props) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            <FilterRow>
+              <FilterButton to="/work" activeClassName="is-active">
+                View all work
+              </FilterButton>
+              <FilterButton
+                to="/work/davis"
+                activeClassName="is-active"
+                partiallyActive
+              >
+                View Davis' work
+              </FilterButton>
+              <FilterButton
+                to="/work/nikki"
+                activeClassName="is-active"
+                partiallyActive
+              >
+                View Nikki's work
+              </FilterButton>
+            </FilterRow>
+
             <Videos>
-              {videos.map((video) => {
+              {filteredVideos.map((video) => {
                 const {
                   editor,
                   id,
@@ -86,6 +114,46 @@ const WorkPage = (props) => {
 }
 
 const Content = styled(motion.div)``
+
+const FilterRow = styled.ul`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    margin: 0 auto 4px;
+    max-width: 960px;
+  }
+`
+
+const FilterButton = styled(Link)`
+  border: 1px solid ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.purple};
+  font-weight: normal;
+  font-size: 18px;
+  letter-spacing: 1.8;
+  margin: 5px 10px;
+  padding: 5px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 250ms ease;
+  white-space: nowrap;
+  width: 100%;
+
+  &:hover,
+  &.is-active {
+    background: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.tan};
+  }
+
+  @media screen and (min-width: 767px) {
+    font-size: 22px;
+    margin: 0 20px;
+  }
+`
 
 const Videos = styled.ul`
   display: grid;

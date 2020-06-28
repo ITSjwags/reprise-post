@@ -31,26 +31,31 @@ const Navigation = (props) => {
         <li>
           <PageLinks>
             <li>
-              <NavLink to="/work" activeClassName="is-active" isHome={isHome}>
-                WORK
+              <NavLink
+                to="/work"
+                activeClassName="is-active"
+                $isHome={isHome}
+                partiallyActive
+              >
+                <span>((</span>WORK<span>))</span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/editors"
                 activeClassName="is-active"
-                isHome={isHome}
+                $isHome={isHome}
               >
-                EDITORS
+                <span>((</span>EDITORS<span>))</span>
               </NavLink>
             </li>
             {/* <li>
               <NavLink
                 to="/contact"
                 activeClassName="is-active"
-                isHome={isHome}
+                $isHome={isHome}
               >
-                CONTACT
+                <span>((</span>CONTACT<span>))</span>
               </NavLink>
             </li> */}
           </PageLinks>
@@ -98,28 +103,34 @@ const PageLinks = styled.ul`
     margin-right: 10px;
 
     @media screen and (min-width: 767px) {
-      margin-right: 75px;
+      margin-right: 25px;
     }
   }
 `
 
 const NavLink = styled(Link)`
-  color: ${({ isHome, theme }) =>
-    isHome ? theme.colors.tan : theme.colors.purple};
+  color: ${({ $isHome, theme }) =>
+    $isHome ? theme.colors.tan : theme.colors.purple};
   font-size: 14px;
   letter-spacing: 3.2px;
   text-transform: uppercase;
+  transition: all 250ms ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.tan};
+  }
+
+  > span {
+    opacity: 0;
+    padding: 0 5px;
+    transition: all 250ms ease;
+  }
 
   &.is-active {
     color: ${({ theme }) => theme.colors.tan};
 
-    &::before {
-      content: '((';
-      padding-right: 5px;
-    }
-    &::after {
-      content: '))';
-      padding-left: 5px;
+    > span {
+      opacity: 1;
     }
   }
 
