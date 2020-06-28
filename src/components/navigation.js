@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useMeasure } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
@@ -8,11 +9,11 @@ import vimeoSrc from '../images/icon-vimeo.svg'
 
 const Navigation = (props) => {
   const { isHome, setHeight } = props
-  const navRef = useRef()
-  const height = navRef?.current?.clientHeight
+  const [navRef, { height }] = useMeasure()
 
   useEffect(() => {
-    setHeight(height)
+    // adding wrapper vertical padding
+    setHeight(height + 40)
   }, [height, setHeight])
 
   return (

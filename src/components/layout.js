@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useWindowSize } from 'react-use'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 
@@ -12,12 +13,14 @@ import Navigation from './navigation'
 const Layout = (props) => {
   const { children, cover, isHome } = props
   const [navHeight, setNavHeight] = useState(0)
+  const { height } = useWindowSize()
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Background />
-      <StyledMain cover={cover} bottomSpace={navHeight}>
+
+      <StyledMain cover={cover} height={height} bottomSpace={navHeight}>
         <Logo />
         {children}
       </StyledMain>
@@ -32,7 +35,7 @@ const Layout = (props) => {
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: ${({ height }) => `${height}px` || '100vh'};
   overflow: hidden;
   overflow-y: ${({ cover }) => (cover ? 'hidden' : 'auto')};
   /* using border instead of padding to account for
