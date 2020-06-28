@@ -35,8 +35,11 @@ const StyledMain = styled.main`
   height: 100vh;
   overflow: hidden;
   overflow-y: ${({ cover }) => (cover ? 'hidden' : 'auto')};
-  min-height: 500px;
   padding-bottom: ${({ paddingBottom }) => paddingBottom}px;
+
+  @media screen and (min-width: 767px) {
+    min-height: 500px;
+  }
 `
 
 Layout.propTypes = {

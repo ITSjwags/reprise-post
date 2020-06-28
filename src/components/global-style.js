@@ -70,7 +70,6 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: normal;
     line-height: 1.2;
-    overscroll-behavior: none;
   }
 
   body {
