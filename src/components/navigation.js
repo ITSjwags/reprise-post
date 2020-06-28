@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useMeasure } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
