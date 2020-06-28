@@ -56,7 +56,7 @@ const IndexPage = (props) => {
 const Content = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   overflow: hidden;
 `
 

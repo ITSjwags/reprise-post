@@ -124,7 +124,8 @@ const VideoContent = styled.div`
 `
 
 const Video = styled.iframe`
-  height: 100%;
+  align-self: stretch;
+  height: auto;
   width: 100%;
 
   @media screen and (min-width: 767px) {

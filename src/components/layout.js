@@ -17,7 +17,7 @@ const Layout = (props) => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Background />
-      <StyledMain cover={cover} paddingBottom={navHeight}>
+      <StyledMain cover={cover} bottomSpace={navHeight}>
         <Logo />
         {children}
       </StyledMain>
@@ -35,7 +35,9 @@ const StyledMain = styled.main`
   height: 100vh;
   overflow: hidden;
   overflow-y: ${({ cover }) => (cover ? 'hidden' : 'auto')};
-  padding-bottom: ${({ paddingBottom }) => paddingBottom}px;
+  /* using border instead of padding to account for
+  ff / edge not loving padding bottom on an div with overflow */
+  border-bottom: ${({ bottomSpace }) => bottomSpace}px solid transparent;
 
   @media screen and (min-width: 767px) {
     min-height: 500px;

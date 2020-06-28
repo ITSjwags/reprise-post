@@ -76,7 +76,12 @@ const Wrapper = styled.nav`
 const Row = styled.ul`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+  }
 `
 
 const Vimeo = styled.a`
@@ -98,12 +103,20 @@ const Vimeo = styled.a`
 const PageLinks = styled.ul`
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (min-width: 767px) {
+    justify-content: flex-start;
+  }
 
   > li {
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-right: 0;
 
     @media screen and (min-width: 767px) {
       margin-right: 25px;
+      margin-top: 0;
     }
   }
 `
@@ -111,19 +124,13 @@ const PageLinks = styled.ul`
 const NavLink = styled(Link)`
   color: ${({ $isHome, theme }) =>
     $isHome ? theme.colors.tan : theme.colors.purple};
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 3.2px;
   text-transform: uppercase;
   transition: all 250ms ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.tan};
-  }
-
-  > span {
-    opacity: 0;
-    padding: 0 5px;
-    transition: all 250ms ease;
   }
 
   &.is-active {
@@ -136,6 +143,12 @@ const NavLink = styled(Link)`
 
   @media screen and (min-width: 767px) {
     font-size: 30px;
+  }
+
+  > span {
+    opacity: 0;
+    padding: 0 5px;
+    transition: all 250ms ease;
   }
 `
 
