@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import Layout from '../components/layout'
+import VideoModal from '../components/video-modal'
+import playSrc from '../images/icon-play.svg'
 
 const WorkPage = (props) => {
   const {
@@ -13,32 +17,71 @@ const WorkPage = (props) => {
     },
   } = props
 
+  const [openVideoDetails, setOpenVideoDetails] = useState({})
+
+  const showModal = () => {
+    return Object.keys(openVideoDetails).length !== 0
+  }
+
+  const closeModal = () => setOpenVideoDetails({})
+
   return (
-    <AnimatePresence>
-      <Layout>
-        <HelmetDatoCms seo={seoMetaTags} />
-        <Content
-          key="work"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Videos>
-            {videos.map((video) => {
-              const { id, vimeoLink } = video
-              return (
-                <Video key={id}>
-                  <Thumbnail
-                    src={vimeoLink?.thumbnailUrl}
-                    alt={vimeoLink?.title}
-                  />
-                </Video>
-              )
-            })}
-          </Videos>
-        </Content>
-      </Layout>
-    </AnimatePresence>
+    <>
+      <Helmet>
+        <body className="work" />
+      </Helmet>
+      <AnimatePresence>
+        <Layout>
+          <HelmetDatoCms seo={seoMetaTags} />
+          <Content
+            key="work"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <Videos>
+              {videos.map((video) => {
+                const {
+                  editor,
+                  id,
+                  description,
+                  title,
+                  thumbnail,
+                  vimeoId,
+                } = video
+                return (
+                  <Video key={id}>
+                    <Trigger
+                      onClick={() =>
+                        setOpenVideoDetails({
+                          editor,
+                          description,
+                          title,
+                          vimeoId,
+                        })
+                      }
+                    >
+                      <Thumbnail fluid={thumbnail.fluid} alt={thumbnail.alt} />
+                      <Play src={playSrc} alt="play icon" />
+                    </Trigger>
+                  </Video>
+                )
+              })}
+            </Videos>
+          </Content>
+
+          {showModal() && (
+            <VideoModal
+              onClose={closeModal}
+              editor={openVideoDetails?.editor?.name}
+              title={openVideoDetails?.title}
+              description={openVideoDetails?.description}
+              vimeoId={openVideoDetails?.vimeoId}
+            />
+          )}
+        </Layout>
+      </AnimatePresence>
+    </>
   )
 }
 
@@ -60,7 +103,34 @@ const Video = styled.li`
   list-style-type: none;
 `
 
-const Thumbnail = styled.img`
+const Trigger = styled.button`
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  &:hover {
+    > img {
+      opacity: 1;
+    }
+  }
+`
+
+const Play = styled.img`
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 500ms ease;
+
+  @media screen and (min-width: 767px) {
+    /* button hover will change opacity */
+    opacity: 0;
+  }
+`
+
+const Thumbnail = styled(Img)`
   display: block;
   object-fit: cover;
   width: 100%;
@@ -71,14 +141,24 @@ export const query = graphql`
     datoCmsWorkPage {
       videos {
         id
-        shortDescription
-        videoName
-        vimeoLink {
-          height
-          providerUid
-          thumbnailUrl
-          title
-          width
+        title
+        vimeoId
+        description
+        thumbnail {
+          alt
+          fluid {
+            width
+            tracedSVG
+            srcSet
+            src
+            sizes
+            height
+            base64
+            aspectRatio
+          }
+        }
+        editor {
+          name
         }
       }
       seoMetaTags {
