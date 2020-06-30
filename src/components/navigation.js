@@ -1,25 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMeasure } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import BackgroundFooter from '../components/background-image-footer'
 import vimeoSrc from '../images/icon-vimeo.svg'
+import arrowSrc from '../images/icon-downArrow-color.svg'
+
+import Contact from './contact'
+import Editors from './editors'
 
 const Navigation = (props) => {
   const { isHome, setHeight } = props
+  const [navModal, setNavModal] = useState('')
   const [navRef, { height }] = useMeasure()
+  const [closeRef, { width }] = useMeasure()
+
+  const isModalOpen = navModal === 'editors' || navModal === 'contact'
 
   useEffect(() => {
     // adding wrapper vertical padding
     setHeight(height + 40)
   }, [height, setHeight])
 
+  const handleClickNav = () => {
+    setNavModal('')
+  }
+
+  const handleClickEditors = () => {
+    setNavModal('editors')
+  }
+
+  const handleClickContact = () => {
+    setNavModal('contact')
+  }
+
   return (
-    <Wrapper ref={navRef}>
+    <Wrapper>
       <BackgroundFooter />
-      <Row>
+      <Row ref={navRef}>
         <li>
           <Vimeo
             href="https://vimeo.com"
@@ -34,34 +54,43 @@ const Navigation = (props) => {
             <li>
               <NavLink
                 to="/work"
-                activeClassName="is-active"
-                $isHome={isHome}
+                activeClassName={isModalOpen ? '' : 'is-active'}
+                onClick={handleClickNav}
+                $isHome={isModalOpen ? false : isHome}
                 partiallyActive
               >
                 <span>((</span>WORK<span>))</span>
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/editors"
-                activeClassName="is-active"
-                $isHome={isHome}
+              <ModalLink
+                className={navModal === 'editors' ? 'is-active' : ''}
+                onClick={handleClickEditors}
+                $isHome={isModalOpen ? false : isHome}
               >
                 <span>((</span>EDITORS<span>))</span>
-              </NavLink>
+              </ModalLink>
             </li>
-            {/* <li>
-              <NavLink
-                to="/contact"
-                activeClassName="is-active"
-                $isHome={isHome}
+            <li>
+              <ModalLink
+                className={navModal === 'contact' ? 'is-active' : ''}
+                onClick={handleClickContact}
+                $isHome={isModalOpen ? false : isHome}
               >
                 <span>((</span>CONTACT<span>))</span>
-              </NavLink>
-            </li> */}
+              </ModalLink>
+            </li>
+            <li ref={closeRef}>
+              <Close onClick={handleClickNav} hide={!isModalOpen}>
+                <img src={arrowSrc} alt="down arrow" />
+              </Close>
+            </li>
           </PageLinks>
         </li>
       </Row>
+
+      {navModal === 'editors' && <Editors />}
+      {navModal === 'contact' && <Contact offset={width} />}
     </Wrapper>
   )
 }
@@ -116,15 +145,16 @@ const PageLinks = styled.ul`
     margin-right: 0;
 
     @media screen and (min-width: 767px) {
-      margin-right: 25px;
+      /* margin-right: 15px; */
       margin-top: 0;
     }
   }
 `
 
-const NavLink = styled(Link)`
+const linkStyles = css`
   color: ${({ $isHome, theme }) =>
     $isHome ? theme.colors.tan : theme.colors.purple};
+  cursor: pointer;
   font-size: 18px;
   letter-spacing: 3.2px;
   text-transform: uppercase;
@@ -150,6 +180,34 @@ const NavLink = styled(Link)`
     opacity: 0;
     padding: 0 5px;
     transition: all 250ms ease;
+  }
+`
+
+const ModalLink = styled.button`
+  ${linkStyles};
+`
+
+const NavLink = styled(Link)`
+  ${linkStyles};
+`
+
+const Close = styled.button`
+  cursor: pointer;
+  height: 30px;
+  margin-left: 15px;
+  opacity: ${({ hide }) => (hide ? 0 : 1)};
+  pointer-events: ${({ hide }) => (hide ? 'none' : 'auto')};
+  transition: opacity 250ms ease;
+  width: 30px;
+
+  @media screen and (min-width: 767px) {
+    height: 44px;
+    width: 44px;
+  }
+
+  > img {
+    display: block;
+    width: 100%;
   }
 `
 
