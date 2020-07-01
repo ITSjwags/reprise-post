@@ -89,13 +89,16 @@ const Navigation = (props) => {
         </li>
       </Row>
 
-      {navModal === 'editors' && <Editors />}
-      {navModal === 'contact' && <Contact offset={width} />}
+      <Content rowHeight={height}>
+        {navModal === 'editors' && <Editors />}
+        {navModal === 'contact' && <Contact offset={width} />}
+      </Content>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.nav`
+  max-height: 100%;
   padding: 20px;
   position: fixed;
   bottom: 0;
@@ -209,6 +212,11 @@ const Close = styled.button`
     display: block;
     width: 100%;
   }
+`
+
+const Content = styled.div`
+  max-height: calc(100vh - ${({ rowHeight }) => rowHeight}px);
+  overflow-y: auto;
 `
 
 Navigation.propTypes = {
