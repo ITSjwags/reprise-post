@@ -93,10 +93,10 @@ const Container = styled(motion.div)`
 const SiteDetails = styled.div`
   margin-bottom: 20px;
   padding-right: 3vw;
-  max-width: 520px;
 
   @media screen and (min-width: 767px) {
     margin-bottom: 0;
+    max-width: 520px;
   }
 `
 
@@ -115,6 +115,12 @@ const Title = styled.h2`
 
 const Bio = styled.div`
   color: ${({ theme }) => theme.colors.tan};
+  font-size: 18px;
+  letter-spacing: 0.8px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 23px;
+  }
 
   > p:not(:last-of-type) {
     line-height: 1.3;
