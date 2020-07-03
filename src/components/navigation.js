@@ -151,12 +151,10 @@ const PageLinks = styled.ul`
   }
 
   > li {
-    margin-top: 20px;
-    margin-right: 0;
+    margin: 20px 0 10px 0;
 
     @media screen and (min-width: 767px) {
-      /* margin-right: 15px; */
-      margin-top: 0;
+      margin: 0;
     }
   }
 `
@@ -165,7 +163,7 @@ const linkStyles = css`
   color: ${({ $isHome, theme }) =>
     $isHome ? theme.colors.tan : theme.colors.purple};
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: all 250ms ease;
@@ -233,7 +231,6 @@ const Close = styled.button`
 const Content = styled.div`
   max-height: calc(calc(100 * var(--vh)) - ${({ rowHeight }) => rowHeight}px);
   overflow-y: auto;
-  overscroll-behavior: contain;
 `
 
 Navigation.propTypes = {

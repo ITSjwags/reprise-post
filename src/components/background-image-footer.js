@@ -23,7 +23,7 @@ const BackgroundFooter = () => {
         fluid={data.placeholderImage.childImageSharp.fluid}
         objectFit="fill"
         objectPosition="top"
-        style={{ height: '100%', minHeight: '500px' }}
+        style={{ height: 'calc(100 * var(--vh))', minHeight: '100%' }}
       />
     </Container>
   )

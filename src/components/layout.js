@@ -58,7 +58,6 @@ const StyledMain = styled.main`
   height: ${({ height }) => `${height}px` || 'calc(100 * var(--vh))'};
   overflow: hidden;
   overflow-y: ${({ cover }) => (cover ? 'hidden' : 'auto')};
-  overscroll-behavior: contain;
   /* using border instead of padding to account for
   ff / edge not loving padding bottom on an div with overflow */
   border-bottom: ${({ bottomSpace }) => bottomSpace}px solid transparent;

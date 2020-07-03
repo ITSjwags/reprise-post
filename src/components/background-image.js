@@ -22,7 +22,7 @@ const Background = () => {
         alt="Textured background image"
         fluid={data.placeholderImage.childImageSharp.fluid}
         objectFit="fill"
-        style={{ height: 'calc(100 * var(--vh))' }}
+        style={{ height: 'calc(100 * var(--vh))', minHeight: '100%' }}
       />
     </Container>
   )
