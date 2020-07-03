@@ -172,6 +172,10 @@ const linkStyles = css`
 
   &:hover {
     color: ${({ theme }) => theme.colors.tan};
+
+    > span {
+      opacity: ${({ $isHome }) => ($isHome ? 1 : 0)};
+    }
   }
 
   &.is-active {
