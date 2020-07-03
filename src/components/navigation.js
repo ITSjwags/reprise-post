@@ -3,7 +3,7 @@ import { useMeasure } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
-import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import BackgroundFooter from '../components/background-image-footer'
 import vimeoSrc from '../images/icon-vimeo.svg'
@@ -90,14 +90,11 @@ const Navigation = (props) => {
             </PageLinks>
           </li>
         </Row>
-        <AnimatePresence>
-          <Content animate rowHeight={height} layoutId="nav">
-            {navModal === 'editors' && <Editors layoutId="nav" />}
-            {navModal === 'contact' && (
-              <Contact layoutId="nav" offset={width} />
-            )}
-          </Content>
-        </AnimatePresence>
+
+        <Content rowHeight={height}>
+          {navModal === 'editors' && <Editors layoutId="nav" />}
+          {navModal === 'contact' && <Contact layoutId="nav" offset={width} />}
+        </Content>
       </Wrapper>
     </AnimateSharedLayout>
   )
@@ -229,8 +226,10 @@ const Close = styled.button`
 `
 
 const Content = styled.div`
-  max-height: calc(calc(100 * var(--vh)) - ${({ rowHeight }) => rowHeight}px);
+  max-height: calc(100vh - ${({ rowHeight }) => rowHeight}px);
+  overflow: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 `
 
 Navigation.propTypes = {
