@@ -3,6 +3,7 @@ import { useMeasure } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
+import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 
 import BackgroundFooter from '../components/background-image-footer'
 import vimeoSrc from '../images/icon-vimeo.svg'
@@ -37,67 +38,72 @@ const Navigation = (props) => {
   }
 
   return (
-    <Wrapper>
-      <BackgroundFooter />
-      <Row ref={navRef}>
-        <li>
-          <Vimeo
-            href="https://vimeo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={vimeoSrc} alt="vimeo logo mark" />
-          </Vimeo>
-        </li>
-        <li>
-          <PageLinks>
-            <li>
-              <NavLink
-                to="/work"
-                activeClassName={isModalOpen ? '' : 'is-active'}
-                onClick={handleClickNav}
-                $isHome={isModalOpen ? false : isHome}
-                partiallyActive
-              >
-                <span>((</span>WORK<span>))</span>
-              </NavLink>
-            </li>
-            <li>
-              <ModalLink
-                className={navModal === 'editors' ? 'is-active' : ''}
-                onClick={handleClickEditors}
-                $isHome={isModalOpen ? false : isHome}
-              >
-                <span>((</span>EDITORS<span>))</span>
-              </ModalLink>
-            </li>
-            <li>
-              <ModalLink
-                className={navModal === 'contact' ? 'is-active' : ''}
-                onClick={handleClickContact}
-                $isHome={isModalOpen ? false : isHome}
-              >
-                <span>((</span>CONTACT<span>))</span>
-              </ModalLink>
-            </li>
-            <li ref={closeRef}>
-              <Close onClick={handleClickNav} hide={!isModalOpen}>
-                <img src={arrowSrc} alt="down arrow" />
-              </Close>
-            </li>
-          </PageLinks>
-        </li>
-      </Row>
-
-      <Content rowHeight={height}>
-        {navModal === 'editors' && <Editors />}
-        {navModal === 'contact' && <Contact offset={width} />}
-      </Content>
-    </Wrapper>
+    <AnimateSharedLayout>
+      <Wrapper animate>
+        <BackgroundFooter />
+        <Row ref={navRef} animate>
+          <li>
+            <Vimeo
+              href="https://vimeo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={vimeoSrc} alt="vimeo logo mark" />
+            </Vimeo>
+          </li>
+          <li>
+            <PageLinks>
+              <li>
+                <NavLink
+                  to="/work"
+                  activeClassName={isModalOpen ? '' : 'is-active'}
+                  onClick={handleClickNav}
+                  $isHome={isModalOpen ? false : isHome}
+                  partiallyActive
+                >
+                  <span>((</span>WORK<span>))</span>
+                </NavLink>
+              </li>
+              <li>
+                <ModalLink
+                  className={navModal === 'editors' ? 'is-active' : ''}
+                  onClick={handleClickEditors}
+                  $isHome={isModalOpen ? false : isHome}
+                >
+                  <span>((</span>EDITORS<span>))</span>
+                </ModalLink>
+              </li>
+              <li>
+                <ModalLink
+                  className={navModal === 'contact' ? 'is-active' : ''}
+                  onClick={handleClickContact}
+                  $isHome={isModalOpen ? false : isHome}
+                >
+                  <span>((</span>CONTACT<span>))</span>
+                </ModalLink>
+              </li>
+              <li ref={closeRef}>
+                <Close onClick={handleClickNav} hide={!isModalOpen}>
+                  <img src={arrowSrc} alt="down arrow" />
+                </Close>
+              </li>
+            </PageLinks>
+          </li>
+        </Row>
+        <AnimatePresence>
+          <Content animate rowHeight={height} layoutId="nav">
+            {navModal === 'editors' && <Editors layoutId="nav" />}
+            {navModal === 'contact' && (
+              <Contact layoutId="nav" offset={width} />
+            )}
+          </Content>
+        </AnimatePresence>
+      </Wrapper>
+    </AnimateSharedLayout>
   )
 }
 
-const Wrapper = styled.nav`
+const Wrapper = styled(motion.nav)`
   max-height: 100%;
   padding: 20px;
   position: fixed;
@@ -106,11 +112,12 @@ const Wrapper = styled.nav`
   width: 100%;
 `
 
-const Row = styled.ul`
+const Row = styled(motion.ul)`
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
@@ -144,7 +151,7 @@ const PageLinks = styled.ul`
   }
 
   > li {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 0;
 
     @media screen and (min-width: 767px) {
@@ -158,8 +165,8 @@ const linkStyles = css`
   color: ${({ $isHome, theme }) =>
     $isHome ? theme.colors.tan : theme.colors.purple};
   cursor: pointer;
-  font-size: 18px;
-  letter-spacing: 3.2px;
+  font-size: 16px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   transition: all 250ms ease;
 
@@ -177,6 +184,7 @@ const linkStyles = css`
 
   @media screen and (min-width: 767px) {
     font-size: 30px;
+    letter-spacing: 3.2px;
   }
 
   > span {
@@ -196,15 +204,19 @@ const NavLink = styled(Link)`
 
 const Close = styled.button`
   cursor: pointer;
-  height: 30px;
+  height: 26px;
   margin-left: 15px;
   opacity: ${({ hide }) => (hide ? 0 : 1)};
   pointer-events: ${({ hide }) => (hide ? 'none' : 'auto')};
+  position: absolute;
+  top: 0;
+  right: 0;
   transition: opacity 250ms ease;
-  width: 30px;
+  width: 26px;
 
   @media screen and (min-width: 767px) {
     height: 44px;
+    position: static;
     width: 44px;
   }
 
@@ -215,8 +227,9 @@ const Close = styled.button`
 `
 
 const Content = styled.div`
-  max-height: calc(100vh - ${({ rowHeight }) => rowHeight}px);
+  max-height: calc(calc(100 * var(--vh)) - ${({ rowHeight }) => rowHeight}px);
   overflow-y: auto;
+  overscroll-behavior: contain;
 `
 
 Navigation.propTypes = {
