@@ -39,11 +39,10 @@ const Contact = (props) => {
 
 const Row = styled(motion.div)`
   padding: 20px 0;
-  text-align: center;
+  text-align: right;
 
   @media screen and (min-width: 767px) {
     padding: 20px ${({ offset }) => offset + 10}px 20px 20px;
-    text-align: right;
   }
 `
 
@@ -82,11 +81,10 @@ const Link = styled.a`
 
 const Divider = styled.span`
   display: none;
-  ${fontStyles};
-  padding: 0 10px;
 
   @media screen and (min-width: 767px) {
     display: inline;
+    ${fontStyles};
     padding: 0 15px;
   }
 `
