@@ -23,7 +23,7 @@ const WorkPage = (props) => {
   const filteredVideos = !!editorFromUrl
     ? videos.filter(
         (video) =>
-          video?.editor?.name.toLowerCase() === editorFromUrl.toLowerCase()
+          video?.editor?.shortName.toLowerCase() === editorFromUrl.toLowerCase()
       )
     : videos
 
@@ -38,14 +38,15 @@ const WorkPage = (props) => {
       <Helmet>
         <body className="work" />
       </Helmet>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         <Layout>
           <HelmetDatoCms seo={seoMetaTags} />
           <Content
             key="work"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ y: -15 }}
+            animate={{ y: 0 }}
+            exit={{ y: 0 }}
+            transition={{ ease: 'easeOut', delay: 0.25 }}
           >
             <FilterRow>
               <FilterButton to="/work" activeClassName="is-active">
@@ -216,7 +217,6 @@ export const query = graphql`
           alt
           fluid {
             width
-            tracedSVG
             srcSet
             src
             sizes
@@ -227,6 +227,7 @@ export const query = graphql`
         }
         editor {
           name
+          shortName
         }
       }
       seoMetaTags {
