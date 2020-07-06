@@ -15,6 +15,7 @@ const Editors = () => {
           node {
             id
             name
+            shortName
             image {
               alt
               fluid {
@@ -36,7 +37,19 @@ const Editors = () => {
 
   const bio = data?.datoCmsSiteInfo?.bio
   const editors = data?.allDatoCmsEditor?.edges
-  console.log(editors)
+  const sortedEditors = editors.sort(function (a, b) {
+    var nameA = a?.node?.shortName.toLowerCase()
+    var nameB = b?.node?.shortName.toLowerCase()
+    if (nameA < nameB) {
+      return -1
+    }
+    if (nameA > nameB) {
+      return 1
+    }
+
+    // names must be equal
+    return 0
+  })
 
   return (
     <AnimatePresence>
@@ -56,16 +69,16 @@ const Editors = () => {
           />
         </SiteDetails>
         <Team>
-          {editors.map((editor) => {
+          {sortedEditors.map((editor) => {
             const { node } = editor
             const pluralName =
-              node?.name?.toLowerCase() === 'davis' ? "Davis'" : "Nikki's"
+              node?.shortName?.toLowerCase() === 'davis' ? "Davis'" : "Nikki's"
             return (
               <div key={node?.id}>
                 <EditorName>{node?.name}</EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
                 <EditorLink
-                  to={`/work/${node?.name?.toLowerCase()}`}
+                  to={`/work/${node?.shortName?.toLowerCase()}`}
                   activeClassName="is-active"
                 >
                   View {pluralName} work
@@ -81,12 +94,13 @@ const Editors = () => {
 
 const Container = styled(motion.div)`
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
 
   @media screen and (min-width: 767px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 90%;
+    grid-template-columns: 1.5fr 1fr;
+    width: 90%;
+    max-width: 1440px;
   }
 `
 
@@ -106,10 +120,12 @@ const Title = styled.h2`
   font-weight: bold;
   letter-spacing: 1.8px;
   margin-bottom: 20px;
+  text-align: center;
   text-transform: uppercase;
 
   @media screen and (min-width: 767px) {
     font-size: 39px;
+    text-align: left;
   }
 `
 
@@ -131,7 +147,7 @@ const Bio = styled.div`
 const Team = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 5vw;
+  grid-gap: 8vw;
   margin: 0;
 `
 
@@ -141,6 +157,7 @@ const EditorName = styled.h3`
   font-weight: bold;
   letter-spacing: 1.8px;
   margin-bottom: 10px;
+  text-align: center;
   text-transform: uppercase;
 
   @media screen and (min-width: 767px) {
