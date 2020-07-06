@@ -6,8 +6,6 @@ import styled from 'styled-components'
 import Carousel from 'nuka-carousel'
 
 import playSrc from '../images/icon-play.svg'
-import leftArrowSrc from '../images/icon-leftArrow.svg'
-import rightArrowSrc from '../images/icon-rightArrow.svg'
 
 const Slider = (props) => {
   const { openModal, slides } = props
@@ -59,24 +57,7 @@ const Slider = (props) => {
         slideWidth={isMobile ? 1 : 1.75}
         wrapAround
         renderBottomCenterControls={() => null}
-        renderCenterLeftControls={({ currentSlide, previousSlide }) => (
-          <PreviousButton
-            offset={slideBottomHeight[currentSlide]}
-            onClick={previousSlide}
-            show={isMobile || isHoveringCarousel}
-          >
-            <Icon src={leftArrowSrc} alt="left arrow" />
-          </PreviousButton>
-        )}
-        renderCenterRightControls={({ currentSlide, nextSlide }) => (
-          <NextButton
-            offset={slideBottomHeight[currentSlide]}
-            onClick={nextSlide}
-            show={isMobile || isHoveringCarousel}
-          >
-            <Icon src={rightArrowSrc} alt="right arrow" />
-          </NextButton>
-        )}
+        withoutControls
       >
         {slides.map((video, i) => {
           const { editor, id, description, title, thumbnail, vimeoId } = video
@@ -125,46 +106,21 @@ const CarouselContainer = styled.div`
   }
 `
 
-const ControlButton = styled.button`
-  color: white;
-  cursor: pointer;
-  opacity: ${({ show }) => (show ? 0.85 : 0)};
-  transform: translateY(-${({ offset }) => offset / 2}px);
-  transition: opacity 500ms ease;
-
-  &:hover {
-    opacity: 1;
-  }
-`
-
-const PreviousButton = styled(ControlButton)`
-  padding-left: 2vw;
-
-  @media screen and (min-width: 767px) {
-    padding-left: 10vw;
-  }
-`
-
-const NextButton = styled(ControlButton)`
-  padding-right: 2vw;
-
-  @media screen and (min-width: 767px) {
-    padding-right: 10vw;
-  }
-`
-
-const Icon = styled.img`
-  display: block;
-  width: 100%;
-`
-
 const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  opacity: 0.5;
   justify-content: center;
   position: relative;
+  transform: scale(0.95);
+  transition: transform 250ms ease;
   width: 100%;
+
+  .slide-current & {
+    opacity: 1;
+    transform: scale(1);
+  }
 `
 
 const Play = styled.img`
