@@ -8,8 +8,9 @@ const Background = () => {
     query {
       placeholderImage: file(relativePath: { eq: "background.jpg" }) {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
+          fluid(maxWidth: 3840, quality: 100) {
+            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluidLimitPresentationSize
           }
         }
       }
@@ -31,7 +32,7 @@ const Background = () => {
 const Container = styled.div`
   bottom: 0;
   left: 0;
-  opacity: 0.4;
+  opacity: 0.25;
   position: absolute;
   right: 0;
   top: 0;
