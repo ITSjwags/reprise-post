@@ -135,7 +135,7 @@ const PageLinks = styled.ul`
 `
 
 const linkStyles = css`
-  color: ${({ $isHome, theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.tan};
   cursor: pointer;
   font-size: 15px;
   letter-spacing: 1px;
@@ -206,7 +206,7 @@ const Close = styled.button`
 `
 
 const Content = styled.div`
-  max-height: calc(100vh - ${({ rowHeight }) => rowHeight}px);
+  max-height: calc(100 * var(--vh) - ${({ rowHeight }) => rowHeight}px);
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
