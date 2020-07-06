@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
 import BackgroundFooter from '../components/background-image-footer'
-import vimeoSrc from '../images/icon-vimeo.svg'
+import LogoMark from '../components/logo-mark'
 import arrowSrc from '../images/icon-downArrow-color.svg'
 
 import Contact from './contact'
@@ -40,16 +40,10 @@ const Navigation = (props) => {
   return (
     <AnimateSharedLayout>
       <Wrapper animate>
-        <BackgroundFooter />
+        <BackgroundFooter animate />
         <Row ref={navRef} animate>
           <li>
-            <Vimeo
-              href="https://vimeo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={vimeoSrc} alt="vimeo logo mark" />
-            </Vimeo>
+            <LogoMark />
           </li>
           <li>
             <PageLinks>
@@ -121,22 +115,6 @@ const Row = styled(motion.ul)`
   }
 `
 
-const Vimeo = styled.a`
-  display: block;
-  height: 23px;
-  transition: transform 250ms ease;
-  width: 26px;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  > img {
-    display: block;
-    width: 100%;
-  }
-`
-
 const PageLinks = styled.ul`
   align-items: center;
   display: flex;
@@ -157,16 +135,17 @@ const PageLinks = styled.ul`
 `
 
 const linkStyles = css`
-  color: ${({ $isHome, theme }) =>
-    $isHome ? theme.colors.tan : theme.colors.purple};
+  color: ${({ $isHome, theme }) => theme.colors.tan};
   cursor: pointer;
   font-size: 15px;
   letter-spacing: 1px;
+  opacity: ${({ $isHome }) => ($isHome ? 1 : 0.3)};
   text-transform: uppercase;
   transition: all 250ms ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.tan};
+    opacity: 1;
 
     > span {
       opacity: ${({ $isHome }) => ($isHome ? 1 : 0)};
@@ -175,6 +154,7 @@ const linkStyles = css`
 
   &.is-active {
     color: ${({ theme }) => theme.colors.tan};
+    opacity: 1;
 
     > span {
       opacity: 1;
