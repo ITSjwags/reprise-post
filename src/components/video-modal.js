@@ -88,7 +88,12 @@ const ModalClose = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+  transition: transform 250ms ease-out;
   width: 44px;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
 
   @media screen and (min-width: 767px) {
     position: static;

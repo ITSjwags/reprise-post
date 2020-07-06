@@ -23,7 +23,7 @@ const IndexPage = (props) => {
   const closeModal = () => setOpenVideoDetails({})
 
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter>
       <Layout cover isHome>
         <HelmetDatoCms seo={seoMetaTags} />
         <Content
@@ -93,6 +93,7 @@ export const query = graphql`
         }
         editor {
           name
+          shortName
         }
       }
       seoMetaTags {

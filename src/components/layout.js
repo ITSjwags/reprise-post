@@ -26,6 +26,8 @@ const Layout = (props) => {
   }
 
   useEffect(() => {
+    setWindowHeight()
+
     window !== undefined &&
       window.addEventListener('resize', () => setWindowHeight())
 
