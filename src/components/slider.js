@@ -46,7 +46,6 @@ const Slider = (props) => {
       onMouseLeave={handleMouseLeave}
     >
       <Carousel
-        autoGenerateStyleTag={false}
         cellAlign="center"
         cellSpacing={20}
         easing="easeQuadInOut"
@@ -57,7 +56,12 @@ const Slider = (props) => {
         slideWidth={isMobile ? 1 : 1.75}
         wrapAround
         renderBottomCenterControls={() => null}
-        withoutControls
+        renderCenterLeftControls={({ previousSlide }) => (
+          <PrevButton onClick={previousSlide} />
+        )}
+        renderCenterRightControls={({ nextSlide }) => (
+          <NextButton onClick={nextSlide} />
+        )}
       >
         {slides.map((video, i) => {
           const { editor, id, description, title, thumbnail, vimeoId } = video
@@ -104,6 +108,29 @@ const CarouselContainer = styled.div`
     height: 100% !important;
     outline: none;
   }
+
+  .slider-control-centerright,
+  .slider-control-centerleft {
+    position: static !important;
+    transform: none !important;
+  }
+`
+
+const ControlButton = styled.button`
+  background: transparent;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 20vw;
+`
+
+const PrevButton = styled(ControlButton)`
+  left: 0;
+`
+
+const NextButton = styled(ControlButton)`
+  right: 0;
 `
 
 const SlideContainer = styled.div`
