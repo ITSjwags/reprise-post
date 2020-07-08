@@ -38,83 +38,79 @@ const WorkPage = (props) => {
       <Helmet>
         <body className="work" />
       </Helmet>
-      <AnimatePresence exitBeforeEnter>
-        <Layout>
-          <HelmetDatoCms seo={seoMetaTags} />
-          <Content
+      <Layout>
+        <HelmetDatoCms seo={seoMetaTags} />
+
+        <FilterRow>
+          <FilterButton to="/work" activeClassName="is-active">
+            View all work
+          </FilterButton>
+          <FilterButton
+            to="/work/davis"
+            activeClassName="is-active"
+            partiallyActive
+          >
+            View Davis' work
+          </FilterButton>
+          <FilterButton
+            to="/work/nikki"
+            activeClassName="is-active"
+            partiallyActive
+          >
+            View Nikki's work
+          </FilterButton>
+        </FilterRow>
+        <AnimatePresence exitBeforeEnter>
+          <Videos
             key="work"
             initial={{ y: -15 }}
             animate={{ y: 0 }}
             exit={{ y: 0 }}
-            transition={{ ease: 'easeOut', delay: 0.25 }}
+            transition={{ ease: 'easeOut', delay: 0.1 }}
           >
-            <FilterRow>
-              <FilterButton to="/work" activeClassName="is-active">
-                View all work
-              </FilterButton>
-              <FilterButton
-                to="/work/davis"
-                activeClassName="is-active"
-                partiallyActive
-              >
-                View Davis' work
-              </FilterButton>
-              <FilterButton
-                to="/work/nikki"
-                activeClassName="is-active"
-                partiallyActive
-              >
-                View Nikki's work
-              </FilterButton>
-            </FilterRow>
+            {filteredVideos.map((video) => {
+              const {
+                editor,
+                id,
+                description,
+                title,
+                thumbnail,
+                vimeoId,
+              } = video
+              return (
+                <Video key={id}>
+                  <Trigger
+                    onClick={() =>
+                      setOpenVideoDetails({
+                        editor,
+                        description,
+                        title,
+                        vimeoId,
+                      })
+                    }
+                  >
+                    <Thumbnail fluid={thumbnail.fluid} alt={thumbnail.alt} />
+                    <Play src={playSrc} alt="play icon" />
+                  </Trigger>
+                </Video>
+              )
+            })}
+          </Videos>
+        </AnimatePresence>
 
-            <Videos>
-              {filteredVideos.map((video) => {
-                const {
-                  editor,
-                  id,
-                  description,
-                  title,
-                  thumbnail,
-                  vimeoId,
-                } = video
-                return (
-                  <Video key={id}>
-                    <Trigger
-                      onClick={() =>
-                        setOpenVideoDetails({
-                          editor,
-                          description,
-                          title,
-                          vimeoId,
-                        })
-                      }
-                    >
-                      <Thumbnail fluid={thumbnail.fluid} alt={thumbnail.alt} />
-                      <Play src={playSrc} alt="play icon" />
-                    </Trigger>
-                  </Video>
-                )
-              })}
-            </Videos>
-          </Content>
-
-          {showModal() && (
-            <VideoModal
-              onClose={closeModal}
-              editor={openVideoDetails?.editor?.name}
-              title={openVideoDetails?.title}
-              description={openVideoDetails?.description}
-              vimeoId={openVideoDetails?.vimeoId}
-            />
-          )}
-        </Layout>
-      </AnimatePresence>
+        {showModal() && (
+          <VideoModal
+            onClose={closeModal}
+            editor={openVideoDetails?.editor?.name}
+            title={openVideoDetails?.title}
+            description={openVideoDetails?.description}
+            vimeoId={openVideoDetails?.vimeoId}
+          />
+        )}
+      </Layout>
     </>
   )
 }
-
-const Content = styled(motion.div)``
 
 const FilterRow = styled.ul`
   align-items: center;
@@ -156,7 +152,7 @@ const FilterButton = styled(Link)`
   }
 `
 
-const Videos = styled.ul`
+const Videos = styled(motion.ul)`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
