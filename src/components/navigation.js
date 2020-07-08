@@ -43,7 +43,7 @@ const Navigation = (props) => {
         <BackgroundFooter animate />
         <Row ref={navRef} animate>
           <li>
-            <LogoMark />
+            <LogoMark onClick={handleClickNav} />
           </li>
           <li>
             <PageLinks>

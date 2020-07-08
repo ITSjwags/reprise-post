@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const LogoMark = (props) => {
-  const { className, color } = props
+  const { className, color, onClick } = props
 
   return (
     <StyledLink to="/">
@@ -14,6 +14,7 @@ const LogoMark = (props) => {
         viewBox="0 0 100 139"
         fill="none"
         className={className}
+        onClick={onClick}
       >
         <path
           d="M24.49 5.1H42a53.21 53.21 0 0153.21 53.21 53.122 53.122 0 01-22.6 43.51 2.12 2.12 0 00-.913 1.373 2.108 2.108 0 001.756 2.475 2.105 2.105 0 001.597-.408 57.333 57.333 0 0024.38-46.95A57.44 57.44 0 0042 .87H24.49a2.12 2.12 0 000 4.23z"
@@ -48,10 +49,12 @@ const StyledLogo = styled.svg`
 
 LogoMark.propTypes = {
   color: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 LogoMark.defaultProps = {
   color: '#CCC4A7',
+  onClick: null,
 }
 
 export default LogoMark
