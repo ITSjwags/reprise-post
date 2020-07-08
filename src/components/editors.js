@@ -74,16 +74,16 @@ const Editors = () => {
             const pluralName =
               node?.shortName?.toLowerCase() === 'davis' ? "Davis'" : "Nikki's"
             return (
-              <div key={node?.id}>
+              <Link
+                key={node?.id}
+                to={`/work/${node?.shortName?.toLowerCase()}`}
+              >
                 <EditorName>{node?.name}</EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
-                <EditorLink
-                  to={`/work/${node?.shortName?.toLowerCase()}`}
-                  activeClassName="is-active"
-                >
+                <EditorLink to={`/work/${node?.shortName?.toLowerCase()}`}>
                   View {pluralName} work
                 </EditorLink>
-              </div>
+              </Link>
             )
           })}
         </Team>
@@ -116,7 +116,7 @@ const SiteDetails = styled.div`
 
 const Title = styled.h2`
   color: ${({ theme }) => theme.colors.tan};
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   letter-spacing: 1.8px;
   margin-bottom: 20px;
@@ -131,7 +131,7 @@ const Title = styled.h2`
 
 const Bio = styled.div`
   color: ${({ theme }) => theme.colors.tan};
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0.8px;
 
   @media screen and (min-width: 767px) {
