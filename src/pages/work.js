@@ -40,62 +40,65 @@ const WorkPage = (props) => {
       </Helmet>
       <Layout>
         <HelmetDatoCms seo={seoMetaTags} />
-
-        <FilterRow>
-          <FilterButton to="/work" activeClassName="is-active">
-            View all work
-          </FilterButton>
-          <FilterButton
-            to="/work/davis"
-            activeClassName="is-active"
-            partiallyActive
-          >
-            View Davis' work
-          </FilterButton>
-          <FilterButton
-            to="/work/nikki"
-            activeClassName="is-active"
-            partiallyActive
-          >
-            View Nikki's work
-          </FilterButton>
-        </FilterRow>
+        <div>
+          <FilterRow>
+            <FilterButton to="/work" activeClassName="is-active">
+              View all work
+            </FilterButton>
+            <FilterButton
+              to="/work/davis"
+              activeClassName="is-active"
+              partiallyActive
+            >
+              View Davis' work
+            </FilterButton>
+            <FilterButton
+              to="/work/nikki"
+              activeClassName="is-active"
+              partiallyActive
+            >
+              View Nikki's work
+            </FilterButton>
+          </FilterRow>
+        </div>
         <AnimatePresence exitBeforeEnter>
-          <Videos
+          <VideoWrapper
             key="work"
             initial={{ y: -15 }}
             animate={{ y: 0 }}
             exit={{ y: 0 }}
             transition={{ ease: 'easeOut', delay: 0.1 }}
           >
-            {filteredVideos.map((video) => {
-              const {
-                editor,
-                id,
-                description,
-                title,
-                thumbnail,
-                vimeoId,
-              } = video
-              return (
-                <Video key={id}>
-                  <Trigger
-                    onClick={() =>
-                      setOpenVideoDetails({
-                        editor,
-                        description,
-                        title,
-                        vimeoId,
-                      })
-                    }
-                  >
-                    <Thumbnail fluid={thumbnail.fluid} alt={thumbnail.alt} />
-                    <Play src={playSrc} alt="play icon" />
-                  </Trigger>
-                </Video>
-              )
-            })}
-          </Videos>
+            <Videos>
+              {filteredVideos.map((video) => {
+                const {
+                  editor,
+                  id,
+                  description,
+                  title,
+                  thumbnail,
+                  vimeoId,
+                } = video
+                return (
+                  <Video key={id}>
+                    <Trigger
+                      onClick={() =>
+                        setOpenVideoDetails({
+                          editor,
+                          description,
+                          title,
+                          vimeoId,
+                        })
+                      }
+                    >
+                      <Thumbnail fluid={thumbnail.fluid} alt={thumbnail.alt} />
+                      <Play src={playSrc} alt="play icon" />
+                    </Trigger>
+                  </Video>
+                )
+              })}
+            </Videos>
+          </VideoWrapper>
         </AnimatePresence>
 
         {showModal() && (
@@ -152,7 +155,9 @@ const FilterButton = styled(Link)`
   }
 `
 
-const Videos = styled(motion.ul)`
+const VideoWrapper = styled(motion.div)``
+
+const Videos = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
