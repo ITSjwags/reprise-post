@@ -122,7 +122,7 @@ const ControlButton = styled.button`
   height: 100%;
   position: absolute;
   top: 0;
-  width: 20vw;
+  width: 19vw;
 `
 
 const PrevButton = styled(ControlButton)`

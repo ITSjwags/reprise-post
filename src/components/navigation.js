@@ -52,7 +52,7 @@ const Navigation = (props) => {
           )}
 
           <li>
-            <PageLinks>
+            <PageLinks animate>
               <li>
                 <NavLink
                   to="/work"
@@ -119,10 +119,11 @@ const Row = styled(motion.ul)`
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
+    padding-top: 0;
   }
 `
 
-const PageLinks = styled.ul`
+const PageLinks = styled(motion.ul)`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
