@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useMeasure } from 'react-use'
+import { useMeasure, useWindowSize } from 'react-use'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
@@ -17,6 +17,9 @@ const Navigation = (props) => {
   const [navModal, setNavModal] = useState('')
   const [navRef, { height }] = useMeasure()
   const [closeRef, { width }] = useMeasure()
+  const { width: windowWidth } = useWindowSize()
+
+  const isMobile = windowWidth < 767
 
   const isModalOpen = navModal === 'editors' || navModal === 'contact'
 
@@ -41,10 +44,13 @@ const Navigation = (props) => {
     <AnimateSharedLayout>
       <Wrapper animate>
         <BackgroundFooter animate />
-        <Row ref={navRef} animate>
-          <li>
-            <LogoMark onClick={handleClickNav} />
-          </li>
+        <Row ref={navRef} isModalOpen={isModalOpen} animate>
+          {!isMobile && (
+            <li>
+              <LogoMark onClick={handleClickNav} />
+            </li>
+          )}
+
           <li>
             <PageLinks>
               <li>
@@ -109,6 +115,7 @@ const Row = styled(motion.ul)`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  padding-top: ${({ isModalOpen }) => (isModalOpen ? `30px` : `0`)};
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
@@ -126,7 +133,7 @@ const PageLinks = styled.ul`
   }
 
   > li {
-    margin: 20px 0 10px 0;
+    margin: 10px 0;
 
     @media screen and (min-width: 767px) {
       margin: 0;
