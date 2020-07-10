@@ -25,6 +25,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          id: 'cwy5dyl',
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // TODO: set up analytics
