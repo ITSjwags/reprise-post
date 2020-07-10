@@ -62,6 +62,7 @@ const VideoModal = (props) => {
 
 const Modal = styled(motion.div)`
   background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(2px);
   position: fixed;
   top: 0;
   right: 0;
