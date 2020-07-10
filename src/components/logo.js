@@ -35,8 +35,10 @@ const StyledLink = styled(Link)`
   margin: 24px auto;
   transition: transform 250ms ease;
 
-  &:hover {
-    transform: scale(1.02);
+  @media screen and (min-width: 767px) {
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 `
 
