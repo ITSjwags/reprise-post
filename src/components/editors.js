@@ -25,7 +25,6 @@ const Editors = () => {
                 sizes
                 src
                 srcSet
-                tracedSVG
                 width
               }
             }
@@ -61,7 +60,9 @@ const Editors = () => {
         transition={{ delay: 0.5 }}
       >
         <SiteDetails>
-          <Title>((REPRISE POST))</Title>
+          <Title>
+            <span>((</span>REPRISE POST<span>))</span>
+          </Title>
           <Bio
             dangerouslySetInnerHTML={{
               __html: bio,
@@ -123,6 +124,12 @@ const Title = styled.h2`
   text-align: center;
   text-transform: uppercase;
 
+  > span {
+    font-weight: normal;
+    letter-spacing: 3.8px;
+    padding: 0 2px;
+  }
+
   @media screen and (min-width: 767px) {
     font-size: 39px;
     text-align: left;
@@ -135,7 +142,7 @@ const Bio = styled.div`
   letter-spacing: 0.8px;
 
   @media screen and (min-width: 767px) {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   > p:not(:last-of-type) {

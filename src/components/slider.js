@@ -171,7 +171,6 @@ const SlideDescription = styled.p`
   background: white;
   color: ${({ theme }) => theme.colors.black};
   font-size: 18px;
-  font-style: italic;
   letter-spacing: 3px;
   margin: 0;
   opacity: 0;
@@ -194,7 +193,6 @@ const SlideDescription = styled.p`
 const EditorName = styled.span`
   display: block;
   font-size: 14px;
-  font-style: italic;
   letter-spacing: 3px;
   line-height: 1;
   margin-top: 10px;
