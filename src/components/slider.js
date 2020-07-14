@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useWindowSize } from 'react-use'
+import { useMeasure, useWindowSize } from 'react-use'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-import Carousel from 'nuka-carousel'
+import Carousel from '@brainhubeu/react-carousel'
+import '@brainhubeu/react-carousel/lib/style.css'
 
 import playSrc from '../images/icon-play.svg'
 
@@ -12,6 +13,7 @@ const Slider = (props) => {
   const [isHoveringCarousel, setIsHoveringCarousel] = useState(false)
   const [slideBottomHeight, setSlideBottomHeight] = useState([])
   const { width } = useWindowSize()
+  const [slideRef, { height: slideHeight }] = useMeasure()
   const slideBottomRefs = useRef([])
 
   const isMobile = width < 767
@@ -28,11 +30,11 @@ const Slider = (props) => {
     }, 250)
   }, [slides, slideBottomRefs])
 
-  const handleMouseEnter = () => {
+  const handleCarouselEnter = () => {
     setIsHoveringCarousel(true)
   }
 
-  const handleMouseLeave = () => {
+  const handleCarouselLeave = () => {
     setIsHoveringCarousel(false)
   }
 
@@ -42,32 +44,24 @@ const Slider = (props) => {
 
   return (
     <CarouselContainer
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleCarouselEnter}
+      onMouseLeave={handleCarouselLeave}
+      ref={slideRef}
     >
       <Carousel
-        cellAlign="center"
-        cellSpacing={20}
-        disableEdgeSwiping
-        easing="easeQuadInOut"
-        edgeEasing="easeQuadInOut"
-        enableKeyboardControls
-        heightMode="max"
-        slidesToShow={isMobile ? 1 : 3}
-        slideWidth={isMobile ? 1 : 1.75}
-        wrapAround
-        defaultControlsConfig={{
-          pagingDotsStyle: {
-            height: 20,
-            width: 20,
+        centered
+        clickToChange
+        dots={isMobile ? true : false}
+        draggable={isMobile ? true : false}
+        infinite
+        keepDirectionWhenDragging
+        lazyLoad
+        slidesPerPage={2}
+        breakpoints={{
+          767: {
+            slidesPerPage: 1,
           },
         }}
-        renderCenterLeftControls={({ previousSlide }) => (
-          <PrevButton name="previous" onClick={previousSlide} />
-        )}
-        renderCenterRightControls={({ nextSlide }) => (
-          <NextButton name="next" onClick={nextSlide} />
-        )}
       >
         {slides.map((video, i) => {
           const { editor, id, description, title, thumbnail, vimeoId } = video
@@ -83,6 +77,7 @@ const Slider = (props) => {
                   vimeoId,
                 })
               }
+              height={slideHeight}
             >
               <Img fluid={thumbnail.fluid} alt={thumbnail.alt} />
               <Play
@@ -107,70 +102,46 @@ const Slider = (props) => {
 
 const CarouselContainer = styled.div`
   flex: 1;
-
-  .slider,
-  .slider-list,
-  .slider-slide {
-    height: 100% !important;
-    outline: none;
-  }
-
-  .slider-control-centerright,
-  .slider-control-centerleft {
-    position: static !important;
-    transform: none !important;
-  }
-
-  .slider-control-bottomcenter {
-    > ul {
-      top: -5px !important;
-    }
-  }
-`
-
-const ControlButton = styled.button`
-  @media screen and (min-width: 767px) {
-    background: transparent;
-    cursor: pointer;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 19vw;
-  }
-`
-
-const PrevButton = styled(ControlButton)`
-  left: 0;
-`
-
-const NextButton = styled(ControlButton)`
-  right: 0;
 `
 
 const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  opacity: 0.5;
+  height: ${({ height }) => height}px;
   justify-content: center;
+  opacity: 0.5;
+  padding: 0 10px;
   position: relative;
   transform: scale(0.95);
   transition: transform 250ms ease;
   width: 100%;
 
-  .slide-current & {
+  &:active {
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: scale(0.975);
+  }
+
+  .BrainhubCarouselItem--active & {
     opacity: 1;
+    pointer-events: auto;
     transform: scale(1);
   }
 `
 
 const Play = styled.img`
-  opacity: ${({ show }) => (show ? 1 : 0)};
+  opacity: 0;
   position: absolute;
   top: calc(50% - ${({ offset }) => offset / 2}px);
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity 500ms ease;
+
+  .BrainhubCarouselItem--active & {
+    opacity: ${({ show }) => (show ? 1 : 0)};
+  }
 `
 
 const SlideBottom = styled.div`
@@ -193,7 +164,7 @@ const SlideDescription = styled.p`
   transition: opacity 500ms ease;
   width: 100%;
 
-  .slide-current & {
+  .BrainhubCarouselItem--active & {
     opacity: 1;
   }
 
