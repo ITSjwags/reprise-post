@@ -117,12 +117,14 @@ const CarouselContainer = styled.div`
 `
 
 const ControlButton = styled.button`
-  background: transparent;
-  cursor: pointer;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 19vw;
+  @media screen and (min-width: 767px) {
+    background: transparent;
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 19vw;
+  }
 `
 
 const PrevButton = styled(ControlButton)`
