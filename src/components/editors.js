@@ -99,7 +99,7 @@ const Container = styled(motion.div)`
 
   @media screen and (min-width: 767px) {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     width: 90%;
     max-width: 1440px;
   }
@@ -111,7 +111,7 @@ const SiteDetails = styled.div`
 
   @media screen and (min-width: 767px) {
     margin-bottom: 0;
-    max-width: 520px;
+    max-width: 470px;
   }
 `
 
@@ -139,14 +139,18 @@ const Title = styled.h2`
 const Bio = styled.div`
   color: ${({ theme }) => theme.colors.tan};
   font-size: 16px;
+  font-weight: 300;
   letter-spacing: 0.8px;
 
   @media screen and (min-width: 767px) {
-    font-size: 21px;
+    font-size: 20px;
+  }
+
+  > p {
+    line-height: 1.3;
   }
 
   > p:not(:last-of-type) {
-    line-height: 1.3;
     margin-bottom: 20px;
   }
 `
@@ -154,13 +158,18 @@ const Bio = styled.div`
 const Team = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 8vw;
+  grid-gap: 20px;
   margin: 0;
+  max-width: 700px;
+
+  @media screen and (min-width: 767px) {
+    grid-gap: 8vw;
+  }
 `
 
 const EditorName = styled.h3`
   color: ${({ theme }) => theme.colors.tan};
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   letter-spacing: 1.8px;
   margin-bottom: 10px;
@@ -168,7 +177,7 @@ const EditorName = styled.h3`
   text-transform: uppercase;
 
   @media screen and (min-width: 767px) {
-    font-size: 30px;
+    font-size: 28px;
   }
 `
 
