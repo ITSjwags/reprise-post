@@ -61,12 +61,16 @@ const Content = styled(motion.div)`
 `
 
 const Tagline = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 1.2;
   margin: 0 0 24px 0;
   padding: 0 10px;
   text-align: center;
+
+  @media screen and (min-width: 767px) {
+    font-size: 24px;
+  }
 `
 
 export const query = graphql`
