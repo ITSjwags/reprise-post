@@ -48,6 +48,7 @@ const Slider = (props) => {
       <Carousel
         cellAlign="center"
         cellSpacing={20}
+        disableEdgeSwiping
         easing="easeQuadInOut"
         edgeEasing="easeQuadInOut"
         enableKeyboardControls
