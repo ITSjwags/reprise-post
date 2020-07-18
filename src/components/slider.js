@@ -51,7 +51,6 @@ const Slider = (props) => {
         easing="easeQuadInOut"
         enableKeyboardControls
         heightMode="max"
-        slideIndex={1}
         slidesToShow={isMobile ? 1 : 3}
         slideWidth={isMobile ? 1 : 1.75}
         wrapAround
@@ -61,7 +60,6 @@ const Slider = (props) => {
             width: 20,
           },
         }}
-        // renderBottomCenterControls={() => null}
         renderCenterLeftControls={({ previousSlide }) => (
           <PrevButton onClick={previousSlide} />
         )}
