@@ -49,6 +49,7 @@ const Slider = (props) => {
         cellAlign="center"
         cellSpacing={20}
         easing="easeQuadInOut"
+        edgeEasing="easeQuadInOut"
         enableKeyboardControls
         heightMode="max"
         slidesToShow={isMobile ? 1 : 3}
