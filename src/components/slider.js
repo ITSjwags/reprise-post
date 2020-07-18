@@ -55,7 +55,13 @@ const Slider = (props) => {
         slidesToShow={isMobile ? 1 : 3}
         slideWidth={isMobile ? 1 : 1.75}
         wrapAround
-        renderBottomCenterControls={() => null}
+        defaultControlsConfig={{
+          pagingDotsStyle: {
+            height: 20,
+            width: 20,
+          },
+        }}
+        // renderBottomCenterControls={() => null}
         renderCenterLeftControls={({ previousSlide }) => (
           <PrevButton onClick={previousSlide} />
         )}
@@ -114,6 +120,12 @@ const CarouselContainer = styled.div`
     position: static !important;
     transform: none !important;
   }
+
+  .slider-control-bottomcenter {
+    > ul {
+      top: -5px !important;
+    }
+  }
 `
 
 const ControlButton = styled.button`
@@ -165,7 +177,7 @@ const SlideBottom = styled.div`
   padding: 20px;
 
   @media screen and (min-width: 767px) {
-    padding: 20px 0;
+    padding: 20px 0 23px 0;
   }
 `
 
