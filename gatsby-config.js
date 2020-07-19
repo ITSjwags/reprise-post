@@ -3,6 +3,7 @@ module.exports = {
     title: `Reprise Post`,
     description: `Reprise Post video editing.`,
     author: `@reprisepost`,
+    siteUrl: `https://reprisepost.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
