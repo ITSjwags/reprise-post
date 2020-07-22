@@ -36,8 +36,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // TODO: set up analytics
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-173221962-1`,
+        respectDNT: true,
       },
     },
     {
@@ -49,7 +49,7 @@ module.exports = {
         background_color: `#4E4A59`,
         theme_color: `#4E4A59`,
         display: `minimal-ui`,
-        icon: `src/images/logo-mark.svg`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sitemap`,

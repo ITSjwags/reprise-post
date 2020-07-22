@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const Contact = (props) => {
   const { offset } = props
@@ -57,7 +58,7 @@ const fontStyles = css`
   }
 `
 
-const Link = styled.a`
+const Link = styled(OutboundLink)`
   border-bottom: 2px solid transparent;
   display: block;
   ${fontStyles};
