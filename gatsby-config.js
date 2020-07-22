@@ -34,10 +34,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: `UA-173221962-1`,
-        respectDNT: true,
+        trackingIds: ['UA-173221962-1'],
+        pluginConfig: {
+          respectDNT: true,
+        },
       },
     },
     {

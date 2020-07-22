@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { OutboundLink } from 'gatsby-plugin-google-gtag'
 
 const Contact = (props) => {
   const { offset } = props
