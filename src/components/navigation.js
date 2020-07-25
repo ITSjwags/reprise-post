@@ -36,6 +36,7 @@ const Navigation = (props) => {
   const handleClickEditors = () => {
     setNavModal('editors')
     typeof window !== 'undefined' &&
+      window.gtag &&
       window.gtag('event', 'navigation-modal-click', {
         event_category: 'Editors Modal',
         event_label: 'Open Editors Modal',
@@ -45,6 +46,7 @@ const Navigation = (props) => {
   const handleClickContact = () => {
     setNavModal('contact')
     typeof window !== 'undefined' &&
+      window.gtag &&
       window.gtag('event', 'navigation-modal-click', {
         event_category: 'Contact Modal',
         event_label: 'Open Contact Modal',
