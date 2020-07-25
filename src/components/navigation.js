@@ -20,13 +20,14 @@ const Navigation = (props) => {
   const { width: windowWidth } = useWindowSize()
 
   const isMobile = windowWidth < 767
+  const paddedHeight = height + 40
 
   const isModalOpen = navModal === 'editors' || navModal === 'contact'
 
   useEffect(() => {
     // adding wrapper vertical padding
-    setHeight(height + 40)
-  }, [height, setHeight])
+    setHeight(paddedHeight)
+  }, [paddedHeight, setHeight])
 
   const handleClickNav = () => {
     setNavModal('')
@@ -101,7 +102,7 @@ const Navigation = (props) => {
           </li>
         </Row>
 
-        <Content rowHeight={height}>
+        <Content rowHeight={paddedHeight}>
           {navModal === 'editors' && <Editors layoutId="nav" />}
           {navModal === 'contact' && <Contact layoutId="nav" offset={width} />}
         </Content>
