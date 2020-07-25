@@ -81,9 +81,7 @@ const Editors = () => {
               >
                 <EditorName>{node?.name}</EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
-                <EditorLink to={`/work/${node?.shortName?.toLowerCase()}`}>
-                  View {pluralName} work
-                </EditorLink>
+                <EditorLinkText>View {pluralName} work</EditorLinkText>
               </Link>
             )
           })}
@@ -181,8 +179,8 @@ const EditorName = styled.h3`
   }
 `
 
-const EditorLink = styled(Link)`
-  border: 1px solid ${({ theme }) => theme.colors.tan};
+const EditorLinkText = styled.p`
+  border: 2px solid ${({ theme }) => theme.colors.tan};
   color: ${({ theme }) => theme.colors.tan};
   display: block;
   font-weight: normal;

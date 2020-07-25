@@ -130,7 +130,7 @@ const FilterRow = styled.ul`
 `
 
 const FilterButton = styled(Link)`
-  border: 1px solid ${({ theme }) => theme.colors.purple};
+  border: 2px solid ${({ theme }) => theme.colors.purple};
   color: ${({ theme }) => theme.colors.purple};
   font-weight: normal;
   font-size: 18px;
