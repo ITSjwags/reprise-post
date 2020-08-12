@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Carousel from 'nuka-carousel'
+import { motion } from 'framer-motion'
 
 import playSrc from '../images/icon-play.svg'
 
@@ -44,6 +45,10 @@ const Slider = (props) => {
     <CarouselContainer
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 1 }}
     >
       <Carousel
         cellAlign="center"
@@ -105,7 +110,7 @@ const Slider = (props) => {
   )
 }
 
-const CarouselContainer = styled.div`
+const CarouselContainer = styled(motion.div)`
   flex: 1;
 
   .slider,

@@ -26,13 +26,15 @@ const IndexPage = (props) => {
     <AnimatePresence exitBeforeEnter>
       <Layout cover isHome>
         <HelmetDatoCms seo={seoMetaTags} />
-        <Content
-          key="home"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Tagline>{tagline}</Tagline>
+        <Content>
+          <Tagline
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            {tagline}
+          </Tagline>
           <Slider
             slides={featuredVideos}
             openModal={(videoDetails) => setOpenVideoDetails(videoDetails)}
@@ -53,14 +55,14 @@ const IndexPage = (props) => {
   )
 }
 
-const Content = styled(motion.div)`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: hidden;
 `
 
-const Tagline = styled.h2`
+const Tagline = styled(motion.h2)`
   font-size: 20px;
   font-weight: 300;
   line-height: 1.2;
