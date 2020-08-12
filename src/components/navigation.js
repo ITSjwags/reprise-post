@@ -55,9 +55,9 @@ const Navigation = (props) => {
 
   return (
     <AnimateSharedLayout>
-      <Wrapper animate>
-        <BackgroundFooter animate />
-        <Row ref={navRef} isModalOpen={isModalOpen} animate>
+      <Wrapper layout>
+        <BackgroundFooter layout />
+        <Row ref={navRef} isModalOpen={isModalOpen} layout>
           {!isMobile && (
             <li>
               <LogoMark onClick={handleClickNav} />
@@ -65,7 +65,7 @@ const Navigation = (props) => {
           )}
 
           <li>
-            <PageLinks animate>
+            <PageLinks>
               <li>
                 <NavLink
                   to="/work"
