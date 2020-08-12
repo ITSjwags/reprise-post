@@ -68,10 +68,10 @@ const Slider = (props) => {
           },
         }}
         renderCenterLeftControls={({ previousSlide }) => (
-          <PrevButton name="previous" onClick={previousSlide} />
+          <PrevButton aria-label="previous" onClick={previousSlide} />
         )}
         renderCenterRightControls={({ nextSlide }) => (
-          <NextButton name="next" onClick={nextSlide} />
+          <NextButton aria-label="next" onClick={nextSlide} />
         )}
       >
         {slides.map((video, i) => {

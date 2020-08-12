@@ -6,7 +6,7 @@ const Logo = (props) => {
   const { className } = props
 
   return (
-    <StyledLink name="reprisePostLogo" to="/">
+    <StyledLink aria-label="reprisePostLogo" to="/">
       <StyledLogo
         width={185}
         height={186}

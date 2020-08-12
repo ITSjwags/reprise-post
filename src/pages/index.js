@@ -25,7 +25,7 @@ const IndexPage = (props) => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Layout cover isHome>
-        <HelmetDatoCms seo={seoMetaTags} />
+        <HelmetDatoCms seo={seoMetaTags} htmlAttributes={{ lang: 'en' }} />
         <Content>
           <Tagline
             initial={{ opacity: 0 }}

@@ -39,7 +39,7 @@ const WorkPage = (props) => {
         <body className="work" />
       </Helmet>
       <Layout>
-        <HelmetDatoCms seo={seoMetaTags} />
+        <HelmetDatoCms seo={seoMetaTags} htmlAttributes={{ lang: 'en' }} />
         <div>
           <FilterRow>
             <FilterButton to="/work" activeClassName="is-active">

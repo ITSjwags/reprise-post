@@ -7,7 +7,7 @@ const LogoMark = (props) => {
   const { className, color, onClick } = props
 
   return (
-    <StyledLink name="reprisePostLogoMark" to="/">
+    <StyledLink aria-label="reprisePostLogoMark" to="/">
       <StyledLogo
         width={100}
         height={139}
