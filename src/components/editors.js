@@ -76,7 +76,7 @@ const Editors = () => {
                   {node?.name.split(' ')[1]}
                 </EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
-                <EditorLinkText>View {pluralName} work</EditorLinkText>
+                <EditorLinkText>{pluralName} work</EditorLinkText>
               </Link>
             )
           })}

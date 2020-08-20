@@ -43,28 +43,28 @@ const WorkPage = (props) => {
         <div>
           <FilterRow>
             <FilterButton to="/work" activeClassName="is-active">
-              View all work
+              All work
             </FilterButton>
             <FilterButton
               to="/work/davis"
               activeClassName="is-active"
               partiallyActive
             >
-              View Davis' work
+              Davis' work
             </FilterButton>
             <FilterButton
               to="/work/nikki"
               activeClassName="is-active"
               partiallyActive
             >
-              View Nikki's work
+              Nikki's work
             </FilterButton>
             <FilterButton
               to="/work/heather"
               activeClassName="is-active"
               partiallyActive
             >
-              View Heather's work
+              Heather's work
             </FilterButton>
           </FilterRow>
         </div>
