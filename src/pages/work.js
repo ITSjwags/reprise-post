@@ -14,6 +14,7 @@ const WorkPage = (props) => {
   const {
     data: {
       datoCmsWorkPage: { videos, seoMetaTags },
+      allDatoCmsEditor: { edges: editors },
     },
     pageContext: { editor: editorFromUrl },
   } = props
@@ -45,27 +46,18 @@ const WorkPage = (props) => {
             <FilterButton to="/work" activeClassName="is-active">
               All work
             </FilterButton>
-            <FilterButton
-              to="/work/davis"
-              activeClassName="is-active"
-              partiallyActive
-            >
-              Davis' work
-            </FilterButton>
-            <FilterButton
-              to="/work/nikki"
-              activeClassName="is-active"
-              partiallyActive
-            >
-              Nikki's work
-            </FilterButton>
-            <FilterButton
-              to="/work/heather"
-              activeClassName="is-active"
-              partiallyActive
-            >
-              Heather's work
-            </FilterButton>
+
+            {editors.map((editor) => {
+              return (
+                <FilterButton
+                  to={`/work/${editor?.node?.shortName?.toLowerCase()}`}
+                  activeClassName="is-active"
+                  partiallyActive
+                >
+                  {editor?.node?.name}
+                </FilterButton>
+              )
+            })}
           </FilterRow>
         </div>
         <AnimatePresence exitBeforeEnter>
@@ -215,6 +207,14 @@ const Thumbnail = styled(Img)`
 
 export const query = graphql`
   query WorkQuery {
+    allDatoCmsEditor {
+      edges {
+        node {
+          name
+          shortName
+        }
+      }
+    }
     datoCmsWorkPage {
       videos {
         id
