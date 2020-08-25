@@ -59,12 +59,8 @@ const Editors = () => {
         <Team>
           {editors.map((editor) => {
             const { node } = editor
-            const pluralName =
-              node?.shortName?.toLowerCase() === 'davis'
-                ? "Davis'"
-                : `${node?.shortName}'s`
             return (
-              <Link
+              <StyledLink
                 key={node?.id}
                 to={`/work/${node?.shortName?.toLowerCase()}`}
               >
@@ -76,8 +72,7 @@ const Editors = () => {
                   {node?.name.split(' ')[1]}
                 </EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
-                <EditorLinkText>{pluralName} work</EditorLinkText>
-              </Link>
+              </StyledLink>
             )
           })}
         </Team>
@@ -174,29 +169,11 @@ const EditorName = styled.h3`
   }
 `
 
-const EditorLinkText = styled.p`
-  border: 2px solid ${({ theme }) => theme.colors.tan};
-  color: ${({ theme }) => theme.colors.tan};
-  display: block;
-  font-weight: normal;
-  font-size: 10px;
-  letter-spacing: 1.8;
-  margin: 20px 0;
-  padding: 5px 10px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: all 250ms ease;
-  white-space: nowrap;
-  width: 100%;
+const StyledLink = styled(Link)`
+  transition: transform 250ms ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.tan};
-    color: ${({ theme }) => theme.colors.purple};
-  }
-
-  @media screen and (min-width: 960px) {
-    font-size: 22px;
-    margin: 10px 0;
+    transform: scale(1.02);
   }
 `
 
