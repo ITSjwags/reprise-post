@@ -60,7 +60,7 @@ const Editors = () => {
           {editors.map((editor) => {
             const { node } = editor
             return (
-              <StyledLink
+              <Link
                 key={node?.id}
                 to={`/work/${node?.shortName?.toLowerCase()}`}
               >
@@ -72,7 +72,7 @@ const Editors = () => {
                   {node?.name.split(' ')[1]}
                 </EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
-              </StyledLink>
+              </Link>
             )
           })}
         </Team>
@@ -166,14 +166,6 @@ const EditorName = styled.h3`
 
   @media screen and (min-width: 960px) {
     font-size: 28px;
-  }
-`
-
-const StyledLink = styled(Link)`
-  transition: transform 250ms ease;
-
-  &:hover {
-    transform: scale(1.02);
   }
 `
 
