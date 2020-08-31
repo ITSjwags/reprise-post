@@ -4,6 +4,14 @@ exports.createPages = async ({ actions }) => {
   const { createPage } = actions
 
   createPage({
+    path: '/work/davis',
+    component: path.resolve(`./src/pages/work.js`),
+    context: {
+      editor: 'davis',
+    },
+  })
+
+  createPage({
     path: '/work/nikki',
     component: path.resolve(`./src/pages/work.js`),
     context: {
@@ -12,10 +20,10 @@ exports.createPages = async ({ actions }) => {
   })
 
   createPage({
-    path: '/work/davis',
+    path: '/work/heather',
     component: path.resolve(`./src/pages/work.js`),
     context: {
-      editor: 'davis',
+      editor: 'heather',
     },
   })
 }

@@ -46,7 +46,7 @@
     "styled-reset-advanced": "^1.0.3"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "prettier": "^2.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
