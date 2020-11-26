@@ -36,6 +36,7 @@ const Editors = () => {
 
   const bio = data?.datoCmsSiteInfo?.bio
   const editors = data?.allDatoCmsEditor?.edges
+  const filteredEditors = editors.filter(({node}) => node?.shortName?.toLowerCase() !== 'heather')
 
   return (
     <AnimatePresence>
@@ -57,19 +58,15 @@ const Editors = () => {
           />
         </SiteDetails>
         <Team>
-          {editors.map((editor) => {
+          {filteredEditors.map((editor) => {
             const { node } = editor
             return (
               <Link
                 key={node?.id}
                 to={`/work/${node?.shortName?.toLowerCase()}`}
               >
-                <EditorName
-                  small={node?.shortName?.toLowerCase() === 'heather'}
-                >
-                  {node?.name.split(' ')[0]}
-                  <br />
-                  {node?.name.split(' ')[1]}
+                <EditorName>
+                  {node?.name}
                 </EditorName>
                 <Img alt={node?.image?.alt} fluid={node?.image?.fluid} />
               </Link>
@@ -85,7 +82,7 @@ const Container = styled(motion.div)`
   margin: 0 auto;
   padding: 40px 0 20px 0;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     width: 90%;
@@ -97,7 +94,7 @@ const SiteDetails = styled.div`
   margin-bottom: 20px;
   padding-right: 3vw;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     margin-bottom: 0;
     max-width: 470px;
   }
@@ -118,7 +115,7 @@ const Title = styled.h2`
     padding: 0 2px;
   }
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     font-size: 39px;
     text-align: left;
   }
@@ -130,7 +127,7 @@ const Bio = styled.div`
   font-weight: 300;
   letter-spacing: 0.8px;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     font-size: 20px;
   }
 
@@ -148,23 +145,23 @@ const Team = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   margin: 0;
+  max-width: 700px;
 
-  @media screen and (min-width: 960px) {
-    grid-gap: 1.3vw;
-    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  @media screen and (min-width: 767px) {
+    grid-gap: 8vw;
   }
 `
 
 const EditorName = styled.h3`
   color: ${({ theme }) => theme.colors.tan};
-  font-size: ${({ small }) => (small ? '17px' : '20px')};
+  font-size: 22px;
   font-weight: bold;
   letter-spacing: 1.8px;
   margin-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     font-size: 28px;
   }
 `

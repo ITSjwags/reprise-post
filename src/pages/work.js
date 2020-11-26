@@ -21,12 +21,15 @@ const WorkPage = (props) => {
 
   const [openVideoDetails, setOpenVideoDetails] = useState({})
 
+  const limitedVideos = videos.filter(video => video?.editor?.shortName.toLowerCase() !== 'heather')
+  debugger
   const filteredVideos = !!editorFromUrl
-    ? videos.filter(
+    ? limitedVideos.filter(
         (video) =>
           video?.editor?.shortName.toLowerCase() === editorFromUrl.toLowerCase()
       )
-    : videos
+    : limitedVideos
+  const filteredEditors = editors.filter(({node}) => node?.shortName?.toLowerCase() !== 'heather')
 
   const showModal = () => {
     return Object.keys(openVideoDetails).length !== 0
@@ -47,7 +50,7 @@ const WorkPage = (props) => {
               All work
             </FilterButton>
 
-            {editors.map((editor) => {
+            {filteredEditors.map((editor) => {
               return (
                 <FilterButton
                   to={`/work/${editor?.node?.shortName?.toLowerCase()}`}
@@ -121,7 +124,7 @@ const FilterRow = styled.ul`
   justify-content: center;
   margin: 0 20px;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     flex-direction: row;
     margin: 0 auto 4px;
     max-width: 960px;
@@ -148,9 +151,9 @@ const FilterButton = styled(Link)`
     color: ${({ theme }) => theme.colors.tan};
   }
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     font-size: 22px;
-    margin: 0 10px;
+    margin: 0 20px;
   }
 `
 
@@ -163,7 +166,7 @@ const Videos = styled.ul`
   margin: 0;
   padding: 20px;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     grid-template-columns: 1fr 1fr;
   }
 `
@@ -193,7 +196,7 @@ const Play = styled.img`
   transform: translate(-50%, -50%);
   transition: opacity 500ms ease;
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 767px) {
     /* button hover will change opacity */
     opacity: 0;
   }

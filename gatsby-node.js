@@ -18,12 +18,4 @@ exports.createPages = async ({ actions }) => {
       editor: 'nikki',
     },
   })
-
-  createPage({
-    path: '/work/heather',
-    component: path.resolve(`./src/pages/work.js`),
-    context: {
-      editor: 'heather',
-    },
-  })
 }

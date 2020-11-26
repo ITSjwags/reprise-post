@@ -15,6 +15,7 @@ const IndexPage = (props) => {
     },
   } = props
   const [openVideoDetails, setOpenVideoDetails] = useState({})
+  const filteredFeaturedVideos = featuredVideos.filter(video => video?.editor?.shortName.toLowerCase() !== 'heather')
 
   const showModal = () => {
     return Object.keys(openVideoDetails).length !== 0
@@ -36,7 +37,7 @@ const IndexPage = (props) => {
             {tagline}
           </Tagline>
           <Slider
-            slides={featuredVideos}
+            slides={filteredFeaturedVideos}
             openModal={(videoDetails) => setOpenVideoDetails(videoDetails)}
           />
         </Content>
