@@ -4,30 +4,79 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const LogoMark = (props) => {
-  const { className, color, onClick } = props
+  const { className, onClick } = props
 
   return (
     <StyledLink aria-label="reprisePostLogoMark" to="/">
       <StyledLogo
-        width={100}
-        height={139}
-        viewBox="0 0 100 139"
+        width={500}
+        height={500}
+        viewBox="0 0 500 500"
         fill="none"
         className={className}
         onClick={onClick}
       >
-        <path
-          d="M24.49 5.1H42a53.21 53.21 0 0153.21 53.21 53.122 53.122 0 01-22.6 43.51 2.12 2.12 0 00-.913 1.373 2.108 2.108 0 001.756 2.475 2.105 2.105 0 001.597-.408 57.333 57.333 0 0024.38-46.95A57.44 57.44 0 0042 .87H24.49a2.12 2.12 0 000 4.23z"
-          fill={color}
+        <defs>
+        <clipPath id="prefix__clip-path">
+          <circle
+            className="prefix__cls-1"
+            cx={-2474.66}
+            cy={346.19}
+            r={101.19}
+          />
+        </clipPath>
+        <clipPath id="prefix__clip-path-2">
+          <circle
+            className="prefix__cls-1"
+            cx={-2712.06}
+            cy={346.19}
+            r={101.19}
+          />
+        </clipPath>
+        <style>{".prefix__cls-1{fill:none}.prefix__cls-9{fill:#443c3e}"}</style>
+      </defs>
+      <g clipPath="url(#prefix__clip-path)">
+        <image
+          width={1920}
+          height={1080}
+          transform="matrix(4.01 0 0 4.01 -4066.47 -799.68)"
+          xlinkHref="../../../Website/PurpleBG_01.png"
         />
-        <path
-          d="M66.87 90.34a2.108 2.108 0 00-.807 1.403 2.116 2.116 0 003.387 1.947A44.664 44.664 0 0086.8 58.31a44.772 44.772 0 00-13.121-31.67 44.751 44.751 0 00-31.68-13.1H30.7a2.11 2.11 0 100 4.22H42A40.551 40.551 0 0182.54 58.31a40.468 40.468 0 01-15.67 32.03zM56.23 91.74a36.298 36.298 0 01-8.2 2.35l21.85 44.57h9.35l-23-46.92z"
-          fill={color}
+      </g>
+      <g clipPath="url(#prefix__clip-path-2)">
+        <image
+          width={1920}
+          height={1080}
+          transform="matrix(4.01 0 0 4.01 -4303.87 -799.68)"
+          xlinkHref="../../../Website/WhiteBG_01.png"
         />
-        <path
-          d="M9.06 34.66h32.52a23.655 23.655 0 0121.85 14.6 23.66 23.66 0 011.8 9.05 23.735 23.735 0 01-11.76 20.41 23.214 23.214 0 01-2.86 1.44h-.05a23.427 23.427 0 01-8.48 1.75h-28.8v8.45H42c1.355-.007 2.707-.1 4.05-.28a32.277 32.277 0 008.28-2.18 32.85 32.85 0 003-1.44 32.465 32.465 0 0016.8-28.15A32.1 32.1 0 0042 26.21H.62v112.45h8.44v-104z"
-          fill={color}
-        />
+      </g>
+      <circle cx={249.87} cy={249.41} r={240.36} fill="#fff" />
+      <path
+        d="M304.35 292.92a1.87 1.87 0 01-1-3.43A90.41 90.41 0 00302.9 138a1.87 1.87 0 012-3.13 94.14 94.14 0 01.44 157.78 1.85 1.85 0 01-.99.27z"
+        fill="#9f9b9c"
+      />
+      <path
+        d="M297.51 279a1.87 1.87 0 01-1.06-3.41 75 75 0 00-.42-123.7 1.87 1.87 0 112.11-3.09 78.76 78.76 0 01.44 129.86 1.86 1.86 0 01-1.07.34z"
+        fill="#696365"
+      />
+      <path
+        d="M311.16 306.82a1.87 1.87 0 01-1-3.45 105.78 105.78 0 00-.43-179.29 1.86 1.86 0 012-3.16 109.52 109.52 0 01.44 185.61 1.89 1.89 0 01-1.01.29z"
+        fill="#d1cecf"
+      />
+      <path
+        d="M318 320.71a1.87 1.87 0 01-1-3.46 121.18 121.18 0 00-.44-207 1.87 1.87 0 011.94-3.19 124.88 124.88 0 01.45 213.4 1.85 1.85 0 01-.95.25z"
+        fill="#e3e1e2"
+      />
+      <path
+        className="prefix__cls-9"
+        d="M276 273.43a63 63 0 006-2.89c.32-.17.63-.36.95-.54.63-.36 1.26-.74 1.89-1.13 1.26-.79 2.53-1.64 3.81-2.57.64-.46 1.29-.94 1.94-1.45A64.54 64.54 0 00251 149.25h-82.87v224h19.7V169h62.3A44.94 44.94 0 01295 213.84a45.43 45.43 0 01-27.69 41.46h-.14a44.68 44.68 0 01-16.11 3.33 4.71 4.71 0 00-.53 0H194.05v19.69h57.32a66 66 0 007.82-.56 64.56 64.56 0 0016.62-4.37z"
+      />
+      <path
+        className="prefix__cls-9"
+        d="M280 279.24l-.43-.89-1.36.57a69.34 69.34 0 01-15.75 4.51l-2.06.34.47 1 43.77 89.31h21.83z"
+      />
+
       </StyledLogo>
     </StyledLink>
   )
@@ -43,17 +92,15 @@ const StyledLink = styled(Link)`
 `
 
 const StyledLogo = styled.svg`
-  height: 35px;
+  height: 44px;
   width: auto;
 `
 
 LogoMark.propTypes = {
-  color: PropTypes.string,
   onClick: PropTypes.func,
 }
 
 LogoMark.defaultProps = {
-  color: '#CCC4A7',
   onClick: null,
 }
 

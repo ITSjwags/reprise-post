@@ -101,7 +101,7 @@ const SiteDetails = styled.div`
 `
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 1.8px;
@@ -122,7 +122,7 @@ const Title = styled.h2`
 `
 
 const Bio = styled.div`
-  color: ${({ theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.8px;
@@ -153,7 +153,7 @@ const Team = styled.div`
 `
 
 const EditorName = styled.h3`
-  color: ${({ theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 1.8px;

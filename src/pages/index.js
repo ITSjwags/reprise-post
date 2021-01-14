@@ -72,7 +72,7 @@ const Tagline = styled(motion.h2)`
   text-align: center;
 
   @media screen and (min-width: 767px) {
-    font-size: 24px;
+    font-size: 18px;
   }
 `
 

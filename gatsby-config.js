@@ -48,8 +48,8 @@ module.exports = {
         name: `reprise-post`,
         short_name: `reprise-post`,
         start_url: `/`,
-        background_color: `#4E4A59`,
-        theme_color: `#4E4A59`,
+        background_color: `#000000`,
+        theme_color: `#000000`,
         display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },

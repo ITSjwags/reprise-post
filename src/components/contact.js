@@ -48,7 +48,7 @@ const Row = styled(motion.div)`
 `
 
 const fontStyles = css`
-  color: ${({ theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 2.2px;
@@ -71,7 +71,7 @@ const Link = styled(OutboundLink)`
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.tan};
+    border-color: ${({ theme }) => theme.colors.white};
   }
 
   @media screen and (min-width: 767px) {

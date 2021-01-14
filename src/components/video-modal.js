@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import backgroundSrc from '../images/background-purple.jpg'
 import closeSrc from '../images/icon-close.svg'
 
 const VideoModal = (props) => {
@@ -69,19 +68,6 @@ const Modal = styled(motion.div)`
   bottom: 0;
   left: 0;
   z-index: 1;
-
-  /* &::after {
-    background: url(${backgroundSrc}) no-repeat top center;
-    background-size: cover;
-    content: '';
-    opacity: 0.98;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-  } */
 `
 
 const ModalClose = styled.button`
@@ -152,7 +138,7 @@ const VideoDetails = styled.div`
   padding: 20px;
 
   a {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.black};
     font-weight: normal;
     transition: all 250ms ease;
 

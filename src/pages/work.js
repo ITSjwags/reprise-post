@@ -22,7 +22,6 @@ const WorkPage = (props) => {
   const [openVideoDetails, setOpenVideoDetails] = useState({})
 
   const limitedVideos = videos.filter(video => video?.editor?.shortName.toLowerCase() !== 'heather')
-  debugger
   const filteredVideos = !!editorFromUrl
     ? limitedVideos.filter(
         (video) =>
@@ -132,8 +131,8 @@ const FilterRow = styled.ul`
 `
 
 const FilterButton = styled(Link)`
-  border: 2px solid ${({ theme }) => theme.colors.purple};
-  color: ${({ theme }) => theme.colors.purple};
+  border: 2px solid ${({ theme }) => theme.colors.brown};
+  color: ${({ theme }) => theme.colors.brown};
   font-weight: normal;
   font-size: 18px;
   letter-spacing: 1.8;
@@ -147,8 +146,8 @@ const FilterButton = styled(Link)`
 
   &:hover,
   &.is-active {
-    background: ${({ theme }) => theme.colors.purple};
-    color: ${({ theme }) => theme.colors.tan};
+    background: ${({ theme }) => theme.colors.brown};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   @media screen and (min-width: 767px) {

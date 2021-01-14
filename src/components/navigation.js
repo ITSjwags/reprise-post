@@ -5,7 +5,6 @@ import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 
-import BackgroundFooter from '../components/background-image-footer'
 import LogoMark from '../components/logo-mark'
 import arrowSrc from '../images/icon-downArrow-color.svg'
 
@@ -56,7 +55,6 @@ const Navigation = (props) => {
   return (
     <AnimateSharedLayout>
       <Wrapper layout>
-        <BackgroundFooter layout />
         <Row ref={navRef} isModalOpen={isModalOpen} layout>
           {!isMobile && (
             <li>
@@ -114,6 +112,7 @@ const Navigation = (props) => {
 }
 
 const Wrapper = styled(motion.nav)`
+  background: ${({ theme }) => theme.colors.brown};
   max-height: 100%;
   padding: 20px;
   position: fixed;
@@ -156,7 +155,7 @@ const PageLinks = styled(motion.ul)`
 `
 
 const linkStyles = css`
-  color: ${({ theme }) => theme.colors.tan};
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   font-size: 15px;
   letter-spacing: 1px;
@@ -165,7 +164,7 @@ const linkStyles = css`
   transition: all 250ms ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.tan};
+    color: ${({ theme }) => theme.colors.white};
     opacity: 1;
 
     > span {
@@ -174,7 +173,7 @@ const linkStyles = css`
   }
 
   &.is-active {
-    color: ${({ theme }) => theme.colors.tan};
+    color: ${({ theme }) => theme.colors.white};
     opacity: 1;
 
     > span {

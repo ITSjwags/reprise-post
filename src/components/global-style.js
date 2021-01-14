@@ -5,15 +5,11 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   html, body {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.black};
     font-family: "trade-gothic-next", sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: 1.2;
-  }
-
-  body {
-    background-color: ${({ theme }) => theme.colors.tan};
   }
 
   b, strong, .bold {

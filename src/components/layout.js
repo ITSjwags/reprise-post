@@ -6,7 +6,6 @@ import styled, { ThemeProvider } from 'styled-components'
 import theme from '../theme'
 
 import GlobalStyle from './global-style'
-import Background from './background-image'
 import Logo from '../components/logo'
 import Navigation from './navigation'
 
@@ -40,7 +39,6 @@ const Layout = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Background />
 
       <StyledMain cover={cover} height={height} bottomSpace={navHeight}>
         <Logo />

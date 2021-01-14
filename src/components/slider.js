@@ -187,7 +187,8 @@ const SlideBottom = styled.div`
 `
 
 const SlideDescription = styled.p`
-  background: white;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0px 0px 5px 0px #000000;
   color: ${({ theme }) => theme.colors.black};
   font-size: 18px;
   letter-spacing: 3px;
