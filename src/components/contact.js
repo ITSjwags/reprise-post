@@ -43,18 +43,17 @@ const Row = styled(motion.div)`
   text-align: right;
 
   @media screen and (min-width: 767px) {
-    padding: 20px ${({ offset }) => offset + 10}px 20px 20px;
+    padding: 20px ${({ offset }) => offset}px 20px 20px;
   }
 `
 
 const fontStyles = css`
   color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
-  font-weight: 300;
-  letter-spacing: 2.2px;
+  letter-spacing: 0.22em;
 
   @media screen and (min-width: 767px) {
-    font-size: 30px;
+    font-size: 28px;
   }
 `
 

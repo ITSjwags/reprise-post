@@ -52,21 +52,14 @@ const Slider = (props) => {
     >
       <Carousel
         cellAlign="center"
-        cellSpacing={20}
         disableEdgeSwiping
         easing="easeQuadInOut"
         edgeEasing="easeQuadInOut"
         enableKeyboardControls
         heightMode="max"
         slidesToShow={isMobile ? 1 : 3}
-        slideWidth={isMobile ? 1 : 1.75}
+        slideWidth={isMobile ? 1 : 2}
         wrapAround
-        defaultControlsConfig={{
-          pagingDotsStyle: {
-            height: 20,
-            width: 20,
-          },
-        }}
         renderCenterLeftControls={({ previousSlide }) => (
           <PrevButton aria-label="previous" onClick={previousSlide} />
         )}
@@ -80,6 +73,7 @@ const Slider = (props) => {
           return (
             <SlideContainer
               key={id}
+              gap={slideBottomHeight[i] / 2}
               onClick={() =>
                 handleSliderClick({
                   editor,
@@ -89,14 +83,20 @@ const Slider = (props) => {
                 })
               }
             >
-              <Img fluid={thumbnail.fluid} alt={thumbnail.alt} />
+              <Img
+                style={{ height: '100%', width: '100%' }}
+                imgStyle={{ objectFit: 'cover' }}
+                fluid={thumbnail.fluid}
+                alt={thumbnail.alt}
+              />
               <Play
                 src={playSrc}
                 alt="play icon"
-                offset={slideBottomHeight[i]}
                 show={isMobile || isHoveringCarousel}
               />
-              <SlideBottom ref={(el) => (slideBottomRefs.current[i] = el)}>
+              <SlideBottom
+                ref={(el) => (slideBottomRefs.current[i] = el)} offset={slideBottomHeight[i] / 2}
+              >
                 <SlideDescription>
                   <span>{title}</span>
                   <EditorName>((EDITOR: {editor?.name}))</EditorName>
@@ -128,8 +128,19 @@ const CarouselContainer = styled(motion.div)`
 
   .slider-control-bottomcenter {
     > ul {
-      top: -5px !important;
+      top: -10px !important;
     }
+  }
+
+  .paging-dot {
+    width: 40px;
+    height: 20px;
+  }
+
+  .paging-dot > circle {
+    r: 5px;
+    cx: 10px;
+    cy: 10px;
   }
 `
 
@@ -140,7 +151,7 @@ const ControlButton = styled.button`
     height: 100%;
     position: absolute;
     top: 0;
-    width: 19vw;
+    width: 16.7vw;
   }
 `
 
@@ -155,46 +166,46 @@ const NextButton = styled(ControlButton)`
 const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 82%;
   opacity: 0.5;
   justify-content: center;
   position: relative;
-  transform: scale(0.95);
-  transition: transform 250ms ease;
   width: 100%;
 
   .slide-current & {
     opacity: 1;
-    transform: scale(1);
+  }
+
+  @media screen and (min-width: 767px) {
+    height: calc(100% - 70px);
   }
 `
 
 const Play = styled.img`
   opacity: ${({ show }) => (show ? 1 : 0)};
   position: absolute;
-  top: calc(50% - ${({ offset }) => offset / 2}px);
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity 500ms ease;
 `
 
 const SlideBottom = styled.div`
-  padding: 20px;
-
-  @media screen and (min-width: 767px) {
-    padding: 20px 0 23px 0;
-  }
+  position: absolute;
+  bottom: -${({ offset }) => offset}px;
+  left: 5%;
+  width: 90%;
 `
 
 const SlideDescription = styled.p`
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0px 0px 5px 0px #000000;
+  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
   color: ${({ theme }) => theme.colors.black};
   font-size: 18px;
-  letter-spacing: 3px;
+  letter-spacing: 0.2em;
   margin: 0;
   opacity: 0;
-  padding: 10px;
+  padding: 10px 15px;
   text-transform: uppercase;
   transition: opacity 500ms ease;
   width: 100%;
@@ -206,6 +217,7 @@ const SlideDescription = styled.p`
   @media screen and (min-width: 767px) {
     align-items: center;
     display: flex;
+    font-size: 20px;
     justify-content: space-between;
   }
 `
@@ -213,7 +225,7 @@ const SlideDescription = styled.p`
 const EditorName = styled.span`
   display: block;
   font-size: 14px;
-  letter-spacing: 3px;
+  letter-spacing: 0.2em;
   line-height: 1;
   margin-top: 10px;
   white-space: nowrap;

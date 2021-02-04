@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const Background = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "background.jpg" }) {
+      placeholderImage: file(relativePath: { eq: "bg-white.png" }) {
         childImageSharp {
           fluid(maxWidth: 3840, quality: 100) {
             ...GatsbyImageSharpFluid
@@ -32,7 +32,6 @@ const Background = () => {
 const Container = styled.div`
   bottom: 0;
   left: 0;
-  opacity: 0.25;
   position: absolute;
   right: 0;
   top: 0;

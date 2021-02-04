@@ -92,7 +92,7 @@ const StyledLink = styled(Link)`
 `
 
 const StyledLogo = styled.svg`
-  height: 44px;
+  height: 50px;
   width: auto;
 `
 
